@@ -1,0 +1,985 @@
+﻿/* Serenify CSS - Mental Health & Wellness App */
+/* Complete stylesheet for Serenify platform */
+
+/* ========== GLOBAL STYLES ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, #e0f7fa, #b2dfdb);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ========== HEADER & NAVIGATION ========== */
+header {
+    background: linear-gradient(135deg, rgba(31,94,31,0.9) 0%, rgba(144,238,144,0.8) 100%);
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logo h1 {
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+}
+
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #1f5e1f;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid rgba(152,251,152,0.5);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+section p {
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+section ul {
+    margin-left: 1.5rem;
+}
+
+section ul li {
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background: linear-gradient(135deg, rgba(31,94,31,0.9) 0%, rgba(144,238,144,0.8) 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ========== INTRO SECTION ========== */
+#intro {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+/* ========== INTRO SECTION ========== */
+#intro {
+    background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.05) 100%);
+    padding: 2rem 1rem;
+    margin-top: 0;
+}
+
+.intro-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.portrait {
+    position: sticky;
+    top: 100px;
+}
+
+.portrait img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    border: 3px solid rgba(152,251,152,0.3);
+    object-fit: cover;
+}
+
+.intro-text h1 {
+    color: #1f5e1f;
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.intro-text p {
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    text-align: justify;
+    font-size: 1rem;
+}
+
+/* ========== EXERCISE STYLES ========== */
+.exercise {
+    background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.05) 100%);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #98fb98;
+}
+
+.exercise h3 {
+    color: #1f5e1f;
+    margin: 0 0 0.5rem 0;
+}
+
+.exercise p {
+    margin: 0 0 1rem 0;
+    color: #555;
+}
+
+.breathing-circle {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    border: 3px solid transparent;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+.breathing-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(102,126,234,0.6);
+}
+
+/* ========== MAP & THERAPIST STYLES ========== */
+.map {
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.map iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+}
+
+.therapists {
+    background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.therapists h3 {
+    color: #1f5e1f;
+    margin: 0 0 1rem 0;
+}
+
+.therapists ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+
+.therapists li {
+    background: white;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    border-radius: 6px;
+    border-left: 4px solid #98fb98;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ========== TIPS & WELLNESS STYLES ========== */
+.tips-list {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+
+.tips-list li {
+    background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.05) 100%);
+    padding: 1rem;
+    margin: 0.8rem 0;
+    border-radius: 6px;
+    border-left: 4px solid #98fb98;
+}
+
+.tips-list strong {
+    color: #1f5e1f;
+}
+
+/* ========== VIDEO GRID STYLES ========== */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.video-play-button {
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.video-play-button:hover {
+    transform: translateY(-5px);
+}
+
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+}
+
+.video-thumbnail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.video-play-button:hover .play-icon {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.video-play-button h3 {
+    color: #1f5e1f;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+/* ========== CUSTOMIZATION STYLES ========== */
+.customization-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.customization-card {
+    background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(152,251,152,0.3);
+    transition: all 0.3s ease;
+}
+
+.customization-card:hover {
+    border-color: rgba(152,251,152,0.6);
+    box-shadow: 0 4px 12px rgba(152,251,152,0.2);
+}
+
+.customization-card h3 {
+    color: #1f5e1f;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+}
+
+.customization-card label {
+    display: block;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.customization-card select,
+.customization-card input[type="number"],
+.customization-card input[type="checkbox"] {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.5rem;
+    border: 2px solid rgba(152,251,152,0.3);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.customization-card input[type="checkbox"] {
+    width: auto;
+    margin: 0.5rem 0.5rem 0 0;
+}
+
+.customization-card select:focus,
+.customization-card input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(152,251,152,0.8);
+    box-shadow: 0 0 8px rgba(152,251,152,0.3);
+}
+
+/* ========== GAMES PAGE SPECIFIC STYLES ========== */
+.games-section {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.games-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.game {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    border-color: rgba(152,251,152,0.5);
+}
+
+.game h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    color: #1f5e1f;
+}
+
+.game p {
+    color: #333;
+    margin: 0 0 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.game-btn {
+    background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+    color: #1a1a2e;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.game-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(152,251,152,0.4);
+}
+
+.game-btn:active {
+    transform: scale(0.98);
+}
+
+/* ========== MEMORY GAME STYLES ========== */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.card {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid rgba(152,251,152,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.card:hover:not(.flipped):not(.matched) {
+    transform: scale(1.05);
+    border-color: rgba(152,251,152,0.7);
+}
+
+.card.flipped {
+    background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+    color: #1a1a2e;
+    border-color: rgba(152,251,152,0.8);
+}
+
+.card.matched {
+    background: linear-gradient(135deg, #90ee90 0%, #7cfc00 100%);
+    color: #1a1a2e;
+    border-color: rgba(152,251,152,1);
+    box-shadow: 0 0 15px rgba(152,251,152,0.6);
+}
+
+/* ========== BUBBLE GAME STYLES ========== */
+.bubble-game {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid rgba(152,251,152,0.3);
+    border-radius: 8px;
+    margin-top: 1rem;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.bubble {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(152,251,152,0.6));
+    border: 2px solid rgba(152,251,152,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.moving-bubble {
+    animation: float 3s ease-in-out infinite;
+}
+
+.bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(152,251,152,0.8);
+    border-color: rgba(152,251,152,0.8);
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+    }
+    50% { 
+        transform: translateY(-30px) scale(1.1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* ========== TETRIS BUTTON STYLES ========== */
+.tetris-button-container {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tetris-btn {
+    width: 90%;
+    max-width: 600px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255,107,107,0.3);
+}
+
+.tetris-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255,107,107,0.5);
+    background: linear-gradient(135deg, #ff7979 0%, #ff6b7a 100%);
+}
+
+.tetris-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ========== POINTS SHOP STYLES ========== */
+.points-shop {
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    border-radius: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.points-shop h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #1f5e1f;
+    margin-bottom: 0.5rem;
+}
+
+.points-shop > p {
+    text-align: center;
+    color: #222;
+    margin-bottom: 2rem;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.shop-item {
+    background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+    border: 2px solid rgba(152,251,152,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.shop-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(152,251,152,0.6);
+    box-shadow: 0 8px 24px rgba(152,251,152,0.2);
+    background: linear-gradient(135deg, rgba(102,126,234,0.15) 0%, rgba(118,75,162,0.15) 100%);
+}
+
+.shop-item h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1f5e1f;
+    font-size: 1.1rem;
+}
+
+.shop-item p {
+    color: #333;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.cost {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+    color: #1a1a2e;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.buy-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(152,251,152,0.4);
+}
+
+.buy-btn:disabled {
+    background: #90ee90;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.shop-item.purchased {
+    border-color: rgba(152,251,152,0.5);
+    background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.1) 100%);
+}
+
+/* ========== NOTIFICATION STYLES ========== */
+.notification-container {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.notification {
+    background: linear-gradient(135deg, rgba(152,251,152,0.9) 0%, rgba(144,238,144,0.9) 100%);
+    color: #1a1a2e;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 4px 15px rgba(152,251,152,0.4);
+    animation: slideIn 0.4s ease-out;
+    font-weight: 500;
+    pointer-events: auto;
+    min-width: 250px;
+    text-align: center;
+}
+
+.notification-success {
+    background: linear-gradient(135deg, rgba(76,175,80,0.95) 0%, rgba(56,142,60,0.95) 100%);
+    color: white;
+}
+
+.notification-info {
+    background: linear-gradient(135deg, rgba(156,39,176,0.95) 0%, rgba(123,31,162,0.95) 100%);
+    color: white;
+}
+
+.notification-error {
+    background: linear-gradient(135deg, rgba(244,67,54,0.95) 0%, rgba(211,47,47,0.95) 100%);
+    color: white;
+}
+
+.notification-celebration {
+    background: linear-gradient(135deg, rgba(33,150,243,0.95) 0%, rgba(21,101,192,0.95) 100%);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.notification-exit {
+    animation: slideOut 0.4s ease-in;
+}
+
+/* ========== HERO SECTION ========== */
+#hero {
+    background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.05) 100%);
+    border-bottom: 2px solid rgba(152,251,152,0.2);
+    padding: 2rem 1rem;
+}
+
+.hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    color: #1f5e1f;
+    margin: 0 0 0.5rem 0;
+}
+
+.hero-content p {
+    color: #222;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+}
+
+#points-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #1f5e1f;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 2px solid rgba(152,251,152,0.3);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        margin: 1rem auto;
+    }
+
+    section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .intro-content {
+        grid-template-columns: 1fr;
+    }
+
+    .portrait {
+        position: relative;
+        top: auto;
+    }
+
+    .games-showcase {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .tetris-button-container {
+        margin-top: 1.5rem;
+    }
+
+    .tetris-btn {
+        width: 95%;
+        padding: 1rem;
+        font-size: 1.15rem;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        padding: 0.8rem;
+    }
+
+    .bubble-game {
+        height: 250px;
+    }
+
+    .bubble {
+        width: 40px;
+        height: 40px;
+        font-size: 0.6rem;
+    }
+
+    .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .notification-container {
+        right: 10px;
+        left: 10px;
+        top: 60px;
+    }
+
+    .notification {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .customization-options {
+        grid-template-columns: 1fr;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    section {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.3rem;
+    }
+
+    .game-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .card {
+        font-size: 1.2rem;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 0.5rem;
+    }
+
+    .bubble-game {
+        height: 200px;
+    }
+
+    .points-shop h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.85rem;
+    }
+
+    .breathing-circle {
+        width: 120px;
+        height: 120px;
+        font-size: 1rem;
+    }
+
+    .map iframe {
+        height: 250px;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+
+    footer p {
+        font-size: 0.85rem;
+    }
+
+    .intro-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .intro-text p {
+        font-size: 0.9rem;
+    }
+}

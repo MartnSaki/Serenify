@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenify Games - Therapeutic Mini-Games</title>
+    <link rel="stylesheet" href="serenify.css">
+    <style>
+        /* ========== GAMES PAGE SPECIFIC STYLES ========== */
+        
+        .games-section {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .games-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .game {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .game:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: rgba(152,251,152,0.5);
+        }
+
+        .game h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+            color: #1f5e1f;
+        }
+
+        .game p {
+            color: #333;
+            margin: 0 0 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+            color: #1a1a2e;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(152,251,152,0.4);
+        }
+
+        .game-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ========== MEMORY GAME STYLES ========== */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid rgba(152,251,152,0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .card:hover:not(.flipped):not(.matched) {
+            transform: scale(1.05);
+            border-color: rgba(152,251,152,0.7);
+        }
+
+        .card.flipped {
+            background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+            color: #1a1a2e;
+            border-color: rgba(152,251,152,0.8);
+        }
+
+        .card.matched {
+            background: linear-gradient(135deg, #90ee90 0%, #7cfc00 100%);
+            color: #1a1a2e;
+            border-color: rgba(152,251,152,1);
+            box-shadow: 0 0 15px rgba(152,251,152,0.6);
+        }
+
+        /* ========== BUBBLE GAME STYLES ========== */
+        .bubble-game {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(152,251,152,0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        /* ========== TETRIS BUTTON STYLES ========== */
+        .tetris-button-container {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tetris-btn {
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255,107,107,0.3);
+        }
+
+        .tetris-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(255,107,107,0.5);
+            background: linear-gradient(135deg, #ff7979 0%, #ff6b7a 100%);
+        }
+
+        .tetris-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .bubble {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(152,251,152,0.6));
+            border: 2px solid rgba(152,251,152,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .moving-bubble {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(152,251,152,0.8);
+            border-color: rgba(152,251,152,0.8);
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+            }
+            50% { 
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* ========== POINTS SHOP STYLES ========== */
+        .points-shop {
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border-radius: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .points-shop h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1f5e1f;
+            margin-bottom: 0.5rem;
+        }
+
+        .points-shop > p {
+            text-align: center;
+            color: #222;
+            margin-bottom: 2rem;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .shop-item {
+            background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+            border: 2px solid rgba(152,251,152,0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(152,251,152,0.6);
+            box-shadow: 0 8px 24px rgba(152,251,152,0.2);
+            background: linear-gradient(135deg, rgba(102,126,234,0.15) 0%, rgba(118,75,162,0.15) 100%);
+        }
+
+        .shop-item h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1f5e1f;
+            font-size: 1.1rem;
+        }
+
+        .shop-item p {
+            color: #333;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .cost {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #98fb98 0%, #90ee90 100%);
+            color: #1a1a2e;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .buy-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(152,251,152,0.4);
+        }
+
+        .buy-btn:disabled {
+            background: #90ee90;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .shop-item.purchased {
+            border-color: rgba(152,251,152,0.5);
+            background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.1) 100%);
+        }
+
+        /* ========== NOTIFICATION STYLES ========== */
+        .notification-container {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .notification {
+            background: linear-gradient(135deg, rgba(152,251,152,0.9) 0%, rgba(144,238,144,0.9) 100%);
+            color: #1a1a2e;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 15px rgba(152,251,152,0.4);
+            animation: slideIn 0.4s ease-out;
+            font-weight: 500;
+            pointer-events: auto;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .notification-success {
+            background: linear-gradient(135deg, rgba(76,175,80,0.95) 0%, rgba(56,142,60,0.95) 100%);
+            color: white;
+        }
+
+        .notification-info {
+            background: linear-gradient(135deg, rgba(156,39,176,0.95) 0%, rgba(123,31,162,0.95) 100%);
+            color: white;
+        }
+
+        .notification-error {
+            background: linear-gradient(135deg, rgba(244,67,54,0.95) 0%, rgba(211,47,47,0.95) 100%);
+            color: white;
+        }
+
+        .notification-celebration {
+            background: linear-gradient(135deg, rgba(33,150,243,0.95) 0%, rgba(21,101,192,0.95) 100%);
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .notification-exit {
+            animation: slideOut 0.4s ease-in;
+        }
+
+        /* ========== HERO SECTION ========== */
+        #hero {
+            background: linear-gradient(135deg, rgba(152,251,152,0.1) 0%, rgba(144,238,144,0.05) 100%);
+            border-bottom: 2px solid rgba(152,251,152,0.2);
+            padding: 2rem 1rem;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: #1f5e1f;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .hero-content p {
+            color: #222;
+            margin: 0 0 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        #points-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1f5e1f;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid rgba(152,251,152,0.3);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .games-showcase {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .tetris-button-container {
+                margin-top: 1.5rem;
+            }
+
+            .tetris-btn {
+                width: 95%;
+                padding: 1rem;
+                font-size: 1.15rem;
+            }
+
+            .memory-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                padding: 0.8rem;
+            }
+
+            .bubble-game {
+                height: 250px;
+            }
+
+            .bubble {
+                width: 40px;
+                height: 40px;
+                font-size: 0.6rem;
+            }
+
+            .shop-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .notification-container {
+                right: 10px;
+                left: 10px;
+                top: 60px;
+            }
+
+            .notification {
+                min-width: auto;
+                margin-bottom: 0.5rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .card {
+                font-size: 1.2rem;
+            }
+
+            .memory-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+                padding: 0.5rem;
+            }
+
+            .bubble-game {
+                height: 200px;
+            }
+
+            .points-shop h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Serenify Games</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="serenify.html">← Back to Serenify</a></li>
+                <li><a href="#memory">Memory Match</a></li>
+                <li><a href="#bubbles">Breathing Bubbles</a></li>
+                <li><a href="#shop">Points Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>🎮 Therapeutic Mini-Games</h1>
+            <p>Take a break and engage in therapeutic mini-games designed to improve focus, memory, and mood. Each game is crafted to be both fun and beneficial for mental health.</p>
+            <div id="points-display">Points: 0</div>
+        </div>
+    </section>
+
+    <main>
+        <section id="games" class="games-section">
+            <div class="games-showcase">
+                <div class="game" id="memory">
+                    <h2>🧠 Memory Match</h2>
+                    <p>Flip cards to find matching pairs. Improves memory and concentration.</p>
+                    <button id="start-memory" class="game-btn">Start Memory Game</button>
+                    <div class="memory-grid">
+                        <div class="card" data-value="A">?</div>
+                        <div class="card" data-value="A">?</div>
+                        <div class="card" data-value="B">?</div>
+                        <div class="card" data-value="B">?</div>
+                        <div class="card" data-value="C">?</div>
+                        <div class="card" data-value="C">?</div>
+                        <div class="card" data-value="D">?</div>
+                        <div class="card" data-value="D">?</div>
+                    </div>
+                </div>
+
+                <div class="game" id="bubbles">
+                    <h2>💙 Breathing Bubbles</h2>
+                    <p>Pop moving bubbles while practicing mindful breathing.</p>
+                    <button id="start-bubbles" class="game-btn">Start Bubble Game</button>
+                    <div class="bubble-game">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tetris-button-container">
+                <button class="tetris-btn" onclick="playTetris()">🎮 Mini Tetris</button>
+            </div>
+        </section>
+
+        <section id="shop" class="points-shop">
+            <h2>🏆 Points Shop</h2>
+            <p>Spend your earned points on premium themes and features!</p>
+            <div class="shop-grid">
+                <div class="shop-item" data-item="theme-blue" data-cost="100">
+                    <h3>Blue Tranquility Theme</h3>
+                    <p>Unlock the calming blue theme for a serene experience.</p>
+                    <div class="cost">Cost: 100 points</div>
+                    <button class="buy-btn" onclick="purchaseItem('theme-blue', 100)">Purchase</button>
+                </div>
+                <div class="shop-item" data-item="theme-mixed" data-cost="200">
+                    <h3>Mixed Gradient Theme</h3>
+                    <p>Beautiful gradient theme combining multiple calming colors.</p>
+                    <div class="cost">Cost: 200 points</div>
+                    <button class="buy-btn" onclick="purchaseItem('theme-mixed', 200)">Purchase</button>
+                </div>
+                <div class="shop-item" data-item="sound-calm" data-cost="150">
+                    <h3>Calm Sound Pack</h3>
+                    <p>Premium nature sounds and gentle melodies.</p>
+                    <div class="cost">Cost: 150 points</div>
+                    <button class="buy-btn" onclick="purchaseItem('sound-calm', 150)">Purchase</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Serenify Games. Therapeutic gaming for mental wellness.</p>
+    </footer>
+
+    <script>
+        // ========== STATE & CONSTANTS ==========
+        const BUBBLE_TEXTS = ['Pop me!', 'Breathe!', 'Relax!', 'Calm!', 'Focus!', 'Peace!', 'Zen!', 'Ahh!'];
+        
+        let points = localStorage.getItem('serenifyPoints') ? parseInt(localStorage.getItem('serenifyPoints')) : 0;
+        let purchasedItems = JSON.parse(localStorage.getItem('purchasedItems')) || [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let gameActive = false;
+        let bubblesPopped = 0;
+        let unlockedThemes = JSON.parse(localStorage.getItem('unlockedThemes')) || [];
+        let unlockedSounds = JSON.parse(localStorage.getItem('unlockedSounds')) || [];
+        let unlockedGames = JSON.parse(localStorage.getItem('unlockedGames')) || ['memory', 'bubbles'];
+        let currentTheme = localStorage.getItem('currentTheme') || 'default';
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            initNotifications();
+            updatePointsDisplay();
+            updateShopDisplay();
+            initGames();
+        });
+
+        function initGames() {
+            setupMemoryGame();
+            setupBubbleGame();
+            setupGameButtons();
+        }
+
+        function setupGameButtons() {
+            const startMemoryBtn = document.getElementById('start-memory');
+            const startBubblesBtn = document.getElementById('start-bubbles');
+
+            startMemoryBtn?.addEventListener('click', () => {
+                gameActive = true;
+                matchedPairs = 0;
+                flippedCards = [];
+                setupMemoryGame();
+                showNotification('Memory game started!', 'info');
+            });
+
+            startBubblesBtn?.addEventListener('click', () => {
+                gameActive = true;
+                initMovingBubbles();
+                showNotification('Bubble game started!', 'info');
+            });
+        }
+
+        // ========== MEMORY GAME ==========
+        function setupMemoryGame() {
+            const memoryGrid = document.querySelector('.memory-grid');
+            if (!memoryGrid) return;
+
+            const shuffledLetters = shuffleArray(['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D']);
+            memoryGrid.innerHTML = '';
+            
+            shuffledLetters.forEach(letter => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.textContent = '?';
+                card.dataset.letter = letter;
+                card.addEventListener('click', () => flipCard(card));
+                memoryGrid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (!gameActive || flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+            
+            card.textContent = card.dataset.letter;
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) setTimeout(checkMatch, 1000);
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.letter === card2.dataset.letter) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                earnPoints(10, 'matching a pair');
+                if (matchedPairs === 4) {
+                    earnPoints(50, 'completing memory game');
+                    showNotification('Memory Game Complete! 🎉', 'celebration');
+                    gameActive = false;
+                    setTimeout(() => setupMemoryGame(), 2000);
+                }
+            } else {
+                card1.textContent = '?';
+                card2.textContent = '?';
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+            flippedCards = [];
+        }
+
+        // ========== BUBBLE GAME ==========
+        function setupBubbleGame() {
+            const bubbleGame = document.querySelector('.bubble-game');
+            if (!bubbleGame) return;
+            bubbleGame.innerHTML = '';
+        }
+
+        function initMovingBubbles() {
+            const bubbleGame = document.querySelector('.bubble-game');
+            if (!bubbleGame) return;
+
+            bubbleGame.innerHTML = '';
+            bubblesPopped = 0;
+
+            for (let i = 0; i < 8; i++) {
+                createBubble(bubbleGame);
+            }
+        }
+
+        function createBubble(container) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble moving-bubble';
+            bubble.dataset.text = BUBBLE_TEXTS[Math.floor(Math.random() * BUBBLE_TEXTS.length)];
+            bubble.style.left = Math.random() * 80 + '%';
+            bubble.style.top = Math.random() * 80 + '%';
+            bubble.style.animationDelay = Math.random() * 2 + 's';
+            bubble.addEventListener('click', () => popMovingBubble(bubble));
+            container.appendChild(bubble);
+        }
+
+        function popMovingBubble(bubble) {
+            if (!gameActive) return;
+
+            showNotification(bubble.dataset.text, 'info');
+            bubblesPopped++;
+
+            if (bubblesPopped % 3 === 0) {
+                earnPoints(5, `popping ${bubblesPopped} bubbles`);
+            }
+
+            bubble.style.animation = 'pop 0.3s ease-out';
+            bubble.style.transform = 'scale(0)';
+            
+            setTimeout(() => {
+                bubble.remove();
+                setTimeout(() => {
+                    if (document.querySelector('.bubble-game') && gameActive) {
+                        createBubble(document.querySelector('.bubble-game'));
+                    }
+                }, 1000 + Math.random() * 2000);
+            }, 300);
+        }
+
+        // ========== POINTS & SHOP ==========
+        function updatePointsDisplay() {
+            const pointsDisplay = document.getElementById('points-display');
+            if (pointsDisplay) pointsDisplay.textContent = `Points: ${points}`;
+        }
+
+        function earnPoints(amount, activity) {
+            points += amount;
+            localStorage.setItem('serenifyPoints', points);
+            updatePointsDisplay();
+            showNotification(`Earned ${amount} points for ${activity}!`, 'success');
+        }
+
+        function purchaseItem(itemId, cost) {
+            if (points < cost) {
+                showNotification('Not enough points!', 'error');
+                return;
+            }
+            if (purchasedItems.includes(itemId)) {
+                showNotification('Already purchased!', 'info');
+                return;
+            }
+
+            points -= cost;
+            localStorage.setItem('serenifyPoints', points);
+            updatePointsDisplay();
+            purchasedItems.push(itemId);
+            localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+            
+            // Store in theme/sound specific arrays
+            if (itemId.startsWith('theme-')) {
+                unlockedThemes.push(itemId);
+                localStorage.setItem('unlockedThemes', JSON.stringify(unlockedThemes));
+            } else if (itemId.startsWith('sound-')) {
+                unlockedSounds.push(itemId);
+                localStorage.setItem('unlockedSounds', JSON.stringify(unlockedSounds));
+            }
+            
+            showNotification(`${itemId.replace('-', ' ').toUpperCase()} purchased!`, 'success');
+            updateShopDisplay();
+        }
+
+        function updateShopDisplay() {
+            document.querySelectorAll('.shop-item').forEach(item => {
+                const itemId = item.dataset.item;
+                const buyBtn = item.querySelector('.buy-btn');
+                
+                if (purchasedItems.includes(itemId)) {
+                    item.classList.add('purchased');
+                    buyBtn.textContent = 'Owned ✓';
+                    buyBtn.disabled = true;
+                } else {
+                    item.classList.remove('purchased');
+                    buyBtn.textContent = 'Purchase';
+                    buyBtn.disabled = false;
+                }
+            });
+        }
+
+        // ========== NOTIFICATIONS ==========
+        function initNotifications() {
+            let container = document.getElementById('notification-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notification-container';
+                container.className = 'notification-container';
+                document.body.appendChild(container);
+            }
+        }
+
+        function showNotification(message, type) {
+            const container = document.getElementById('notification-container');
+            if (!container) initNotifications();
+            
+            const notif = document.createElement('div');
+            notif.className = `notification notification-${type}`;
+            notif.textContent = message;
+            document.getElementById('notification-container').appendChild(notif);
+
+            setTimeout(() => {
+                notif.classList.add('notification-exit');
+                setTimeout(() => notif.remove(), 400);
+            }, 3000);
+        }
+
+        // ========== THEME MANAGEMENT ==========
+        function applyTheme(themeName) {
+            currentTheme = themeName;
+            localStorage.setItem('currentTheme', themeName);
+            // Theme variables would be applied via CSS custom properties
+            document.documentElement.setAttribute('data-theme', themeName);
+        }
+
+        function updateThemeSelector() {
+            // This would update UI elements if there was a theme selector
+            console.log('Available themes:', unlockedThemes);
+        }
+
+        // ========== UTILITIES ==========
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // ========== EXTERNAL GAMES ==========
+        function playTetris() {
+            // Redirect to the custom mini tetris game
+            window.location.href = 'mini-tetris.html';
+        }
+    </script>
+</body>
+</html>
